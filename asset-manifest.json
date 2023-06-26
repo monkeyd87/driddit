@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dreddit/static/css/main.596461b9.css",
+    "main.js": "/dreddit/static/js/main.0da17018.js",
+    "static/js/787.83aa730d.chunk.js": "/dreddit/static/js/787.83aa730d.chunk.js",
+    "index.html": "/dreddit/index.html",
+    "main.596461b9.css.map": "/dreddit/static/css/main.596461b9.css.map",
+    "main.0da17018.js.map": "/dreddit/static/js/main.0da17018.js.map",
+    "787.83aa730d.chunk.js.map": "/dreddit/static/js/787.83aa730d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.596461b9.css",
+    "static/js/main.0da17018.js"
+  ]
+}
