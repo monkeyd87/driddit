@@ -8,14 +8,14 @@ import Search from './pages/Search'
 import Live from './pages/Live'
 import Error from './pages/Error'
 import { useEffect,useState,useRef} from 'react';
-import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, createHashRouter  } from 'react-router-dom';
 
 function App() {
 
 // adding routes
 
 
-const router = createBrowserRouter(createRoutesFromElements(
+const router = createHashRouter(createRoutesFromElements(
   <Route path='/'element={<Root/>} errorElement={<Error/>}>
     <Route path='/' element={<Home/>}/>
     <Route path ='search/:query' element={<Search/>}/>
@@ -93,13 +93,11 @@ const router = createBrowserRouter(createRoutesFromElements(
 
   return (
     <>
-      {/* <NavBar title={'Ⱦ'}  onSubmit={handleQuery}/>
-      <div className='d-flex align-items-center  flex-column containerEl' style={{backgroundColor:'black',height:'100%',marginTop:'50px'}}>
-        {data.filter(data=>data.data.post_hint === 'image').map((data,index)=>{
-          return <Card key={data.data.url+`${index}`}src={data.data.url} text={data.data.title} header={data.data.subreddit_name_prefixed}/>
-        })}
-      </div> */}
-      <RouterProvider router={router}/>
+
+   
+
+      <RouterProvider  router={router}/>
+
     </>
   );
 }
