@@ -59,7 +59,7 @@ function Home(){
     },[subreddit])
 
     return(
-        <div className='d-flex align-items-center  flex-column containerEl align-items-even' style={{backgroundColor:'black',height:'100%',marginTop:'50px'}}>
+        <div className='d-flex align-items-center col-sm-1 flex-column containerEl align-items-even' style={{marginTop:'50px'}}>
         {data.filter(data=>data.data.post_hint === 'image').map((data,index)=>{
           return <Card key={data.data.url+`${index}`}src={data.data.url} text={data.data.title} author={data.data.author} header={data.data.subreddit_name_prefixed} thumbnail={data.data.thumbnail}/>
         })}

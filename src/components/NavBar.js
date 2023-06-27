@@ -20,6 +20,7 @@ function NavBar({title,url,onSubmit}){
     
   }
     return (
+
         <Navbar className='fixed-top border-bottom border-dark ' bg="black" expand="sm">
             <NavLink to='/'>
               <Navbar.Brand  onMouseOut={()=>{setLogoState(true)}} onMouseOver={()=>{setLogoState(false)}} className='text-light text-center '>{logoState ?<img src='https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png' style={{height:'65px',width:'65px',padding:'0',filter:'invert(1)'}} />:<img src='https://media.giphy.com/media/1SG7c0JfRvZwWzO1XC/giphy.gif' style={{height:'65px',width:'65px',padding:'0'}}/>}</Navbar.Brand>
@@ -70,6 +71,7 @@ function NavBar({title,url,onSubmit}){
             </Navbar.Collapse>
           
         </Navbar>
+      
       );
     }
 

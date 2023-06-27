@@ -1,18 +1,19 @@
 
 import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 function Root(){
 
 
   
     return(
-    <>
-        <NavBar/>
-        <div>
+   
+        <Container fluid className="bg-black  d-flex justify-content-center">
+            <NavBar/>
             <Outlet/>
-        </div>
-    </>)
+        </Container>
+   )
 }
 
 export default Root

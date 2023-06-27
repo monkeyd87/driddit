@@ -14,7 +14,7 @@ function CardEl({src,text,header,post_hint,author,thumbnail}){
 
             </div>
 
-            <Card className=' m-4 border border-dark' bg='dark' text="light" style={{ width: '30rem' }}> 
+            <Card className=' col-sm-12 m-4 border border-dark' bg='dark' text="light" style={{ width: '30rem' }}> 
                 <Card.Header >{header}</Card.Header>
                 <Card.Img src={src} loading=""/>
                 <Card.Body>
