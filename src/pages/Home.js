@@ -60,19 +60,11 @@ function Home() {
   }, [isNSFW]);
 
   return (
-    <div className='d-flex align-items-center col-sm-1 flex-column containerEl align-items-even' style={{ marginTop: '50px' }}>
-      
-      {post.filter(data => data.data.post_hint === 'image').map((data, index) => (
-        <Card
-          key={data.data.url + `${index}`}
-          src={data.data.url}
-          text={data.data.title}
-          author={data.data.author}
-          header={data.data.subreddit_name_prefixed}
-          thumbnail={data.data.thumbnail}
-        />
-      ))}
-    </div>
+    <div className='d-flex align-items-center  flex-column containerEl' style={{backgroundColor:'black',height:'100%',marginTop:'50px'}}>
+    {post.filter(data=>data.data.post_hint === 'image').map((data,index)=>{
+      return <Card key={data.data.url+`${index}`}src={data.data.url} author={data.data.author} thumbnail={data.data.thumbnail} text={data.data.title} header={data.data.subreddit_name_prefixed}/>
+    })}
+  </div>
   );
 }
 

@@ -14,7 +14,7 @@ function Root(){
         <>
         <nsfwContext.Provider value={[isNSFW,setIsNSFW]}>
             <NavBar/>
-            <Container  className="bg-black  d-flex justify-content-center">
+            <Container  className="bg-black  d-flex justify-content-center col-sm-4 ">
                 <Outlet context={isNSFW}/>
             </Container>
 
