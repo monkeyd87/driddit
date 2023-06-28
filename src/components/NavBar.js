@@ -1,15 +1,17 @@
 import {Navbar,Nav,Button,Container,Form,NavDropdown,OverlayTrigger, Card} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope,faCake,faHouse,faVideo,faCompass,faStore,faFaceSmileWink,faBolt,faUser,faPencil,faD } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
-import { NavLink, useNavigate, Navigate } from 'react-router-dom'
+import { useState,useContext } from 'react'
+import { NavLink, useNavigate, Navigate,  } from 'react-router-dom'
+import nsfwContext from '../hooks/index'
 
 
 function NavBar({title,url,onSubmit}){
   const [query, setQuery] = useState('')
   const navigate = useNavigate()
-
   const [logoState, setLogoState] =useState(true)
+  const [isNSFW,setIsNSFW] = useContext(nsfwContext)
+
 
   const submitHandler = event =>{
     event.preventDefault()
@@ -69,7 +71,17 @@ function NavBar({title,url,onSubmit}){
               </Button>
             </Nav>
             </Navbar.Collapse>
-          
+          <div>
+            <Form>
+              <Form.Check
+              type='switch'
+              onChange={()=>setIsNSFW(!isNSFW)}
+              checked={isNSFW}
+              />
+              
+            </Form>
+          </div>
+          <strong className={isNSFW?'neonText':'text-dark'}>NSFW</strong>
         </Navbar>
       
       );

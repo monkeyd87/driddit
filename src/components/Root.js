@@ -2,17 +2,24 @@
 import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import {useState,createContext} from 'react'
+import nsfwContext from '../hooks'
 
 function Root(){
 
+    const [isNSFW,setIsNSFW] = useState(false)
 
   
     return(
-   
-        <Container fluid className="bg-black  d-flex justify-content-center">
+        <>
+        <nsfwContext.Provider value={[isNSFW,setIsNSFW]}>
             <NavBar/>
-            <Outlet/>
-        </Container>
+            <Container  className="bg-black  d-flex justify-content-center">
+                <Outlet context={isNSFW}/>
+            </Container>
+
+        </nsfwContext.Provider>
+        </>
    )
 }
 

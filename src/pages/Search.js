@@ -1,50 +1,54 @@
 
 import Card from '../components/Card'
-import { useEffect,useState,useRef} from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect,useState,useRef,} from 'react';
+
+import { useParams,useOutletContext } from 'react-router-dom';
 
 function Search(){
+    const isLoading = useRef(false)
     const {query} = useParams()
     const afterEl = useRef('');
-    const [data, setData] = useState([])
+    const [post, setPost] = useState([])
+    const isNSFW = useOutletContext()
 
 
   
-    const load = (afterElement)=>{
-      fetch(`https://www.reddit.com/search.json?q=${query}&include_over_18=1&after=`+afterElement)
-      .then(res=>res.json())
-      .then(res=>{
-        const {after,children} = res.data
-        setData(prev=>[...prev,...children])
-        afterEl.current = after
-        console.log(query)
+    const load = async(afterElement)=>{
+      isLoading.current = true
+      console.log('loading')
+      try{
+        const response = await fetch(`https://www.reddit.com/search.json?q=${query}${isNSFW?'&include_over_18=1':''}&after=${afterElement}`)
+        const data = await response.json()
+        const {after, children} = data.data
         
-      })
-     
+        setPost(prev=>[...prev,...children])
+        afterEl.current = after
+
+
+      }catch{
+        console.log('error loading data')
+      }
+        
+      
+     isLoading.current= false
     }
 
     const  handleScroll=()=> {
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      const clientHeight = document.documentElement.clientHeight || window.innerHeight;
-    
-      if (scrollTop + clientHeight >= scrollHeight) {
-        // User has reached the bottom of the page
-        // Load the next page
-  
-        load(afterEl.current)
-
-          
-          
-       
+      if (
+        window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 3000 &&
+        !isLoading.current
+      ) {
+        // Load more posts when the user scrolls near the bottom
+        load(afterEl.current);
       }
-    }
+    };
+    
     
    
    
     
     useEffect(()=>{
-        setData([])
+        setPost([])
         afterEl.current =''
         load(afterEl.current)
   
@@ -56,11 +60,11 @@ function Search(){
         console.log('unmounted')
       };
       
-    },[query])
+    },[isNSFW,query])
 
     return(
         <div className='d-flex align-items-center  flex-column containerEl' style={{backgroundColor:'black',height:'100%',marginTop:'50px'}}>
-        {data.filter(data=>data.data.post_hint === 'image').map((data,index)=>{
+        {post.filter(data=>data.data.post_hint === 'image').map((data,index)=>{
           return <Card key={data.data.url+`${index}`}src={data.data.url} author={data.data.author} thumbnail={data.data.thumbnail} text={data.data.title} header={data.data.subreddit_name_prefixed}/>
         })}
       </div>
