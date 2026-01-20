@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 require('dotenv').config()
-
+console.log('running...')
 const app = express()
 const port = process.env.PORT
 app.use(express.json())
