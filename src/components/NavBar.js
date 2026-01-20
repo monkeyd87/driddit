@@ -12,6 +12,7 @@ function NavBar({title,url,onSubmit}){
   const [logoState, setLogoState] =useState(true)
   const [isNSFW,setIsNSFW] = useContext(nsfwContext)
 
+  console.log(nsfwContext._currentValue)
 
   const submitHandler = event =>{
     event.preventDefault()

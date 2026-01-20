@@ -15,7 +15,7 @@ function Home() {
     
 
         try{
-          const response = await fetch(`https://www.reddit.com/user/digitalmonkey87/m/${!isNSFW?'inspiration':'redditApp'}.json?after=${afterElement}` )
+          const response = await fetch(`/api?after=`+afterEl.current )
           const data = await response.json()
           
           const { after, children } = data.data;

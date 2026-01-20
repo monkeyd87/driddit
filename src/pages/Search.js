@@ -17,7 +17,7 @@ function Search(){
       isLoading.current = true
       console.log('loading')
       try{
-        const response = await fetch(`https://www.reddit.com/search.json?q=${query}${isNSFW?'&include_over_18=1':''}&after=${afterElement}`)
+        const response = await fetch(`/api/search?query=${query}&after=${afterEl.current}`)
         const data = await response.json()
         const {after, children} = data.data
         

@@ -15,17 +15,16 @@ function App() {
 // adding routes
 
 
-const router = createHashRouter(createRoutesFromElements(
+const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/'element={<Root/>} errorElement={<Error/>}>
     <Route path='/' element={<Home/>}/>
     <Route path ='search/:query' element={<Search/>}/>
     <Route path='live' element={<Live/>}/>
-    
   </Route>
 ))
 
   const afterEl = useRef('');
-  const [subreddit, setSubreddit] = useState('https://www.reddit.com/user/digitalmonkey87/m/inspiration.json?after=')
+  const [subreddit, setSubreddit] = useState('/api')
   const [data, setData] = useState([])
   const [formData, setFormData] = useState('')
   const [count, setCount] = useState(1)
